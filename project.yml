@@ -9,6 +9,7 @@ targets:
     platform: iOS
     sources: [InventoryApp]
     info:
+      path: InventoryApp/Info.plist
       properties:
         UILaunchScreen: {}
         NSMicrophoneUsageDescription: "Aplikacija koristi mikrofon za glasovni unos artikala u inventuru."
