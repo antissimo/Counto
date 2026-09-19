@@ -1,0 +1,29 @@
+name: InventoryApp
+options:
+  bundleIdPrefix: com.anteapp
+  deploymentTarget:
+    iOS: "17.0"
+targets:
+  InventoryApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: InventoryApp
+    info:
+      properties:
+        UILaunchScreen: {}
+        NSMicrophoneUsageDescription: "Aplikacija koristi mikrofon za glasovni unos artikala u inventuru."
+        NSSpeechRecognitionUsageDescription: "Aplikacija koristi prepoznavanje govora za pretvaranje izgovorenog artikla i količine u tekst."
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.anteapp.inventoryapp
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+schemes:
+  InventoryApp:
+    build:
+      targets:
+        InventoryApp: all
+    run:
+      config: Debug
