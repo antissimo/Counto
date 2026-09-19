@@ -1,0 +1,46 @@
+name: Build Unsigned IPA
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build unsigned .app for iOS device
+        run: |
+          xcodebuild build \
+            -project InventoryApp.xcodeproj \
+            -scheme InventoryApp \
+            -sdk iphoneos \
+            -configuration Debug \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            PROVISIONING_PROFILE="" \
+            ONLY_ACTIVE_ARCH=NO
+
+      - name: Package unsigned IPA
+        run: |
+          mkdir -p Payload
+          cp -r "build/Build/Products/Debug-iphoneos/InventoryApp.app" Payload/
+          zip -r InventoryApp.ipa Payload
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: InventoryApp-unsigned-ipa
+          path: InventoryApp.ipa
+          retention-days: 14
