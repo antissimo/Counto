@@ -7,13 +7,12 @@ targets:
   InventoryApp:
     type: application
     platform: iOS
-    sources:
-      - path: InventoryApp
+    sources: [InventoryApp]
     info:
       properties:
         UILaunchScreen: {}
         NSMicrophoneUsageDescription: "Aplikacija koristi mikrofon za glasovni unos artikala u inventuru."
-        NSSpeechRecognitionUsageDescription: "Aplikacija koristi prepoznavanje govora za pretvaranje izgovorenog artikla i količine u tekst."
+        NSSpeechRecognitionUsageDescription: "Aplikacija koristi prepoznavanje govora za pretvaranje izgovorenog artikla i kolicine u tekst."
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.anteapp.inventoryapp
