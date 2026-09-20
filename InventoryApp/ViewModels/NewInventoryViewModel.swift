@@ -38,11 +38,11 @@ final class NewInventoryViewModel: ObservableObject {
     init(
         inventory: Inventory,
         context: ModelContext,
-        speechService: SpeechRecognitionService = SpeechRecognitionService()
+        speechService: SpeechRecognitionService? = nil
     ) {
         self.inventory = inventory
         self.context = context
-        self.speechService = speechService
+        self.speechService = speechService ?? SpeechRecognitionService()
         loadArticles()
         refreshItems()
     }
